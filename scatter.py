@@ -9,6 +9,8 @@ def preprocess_house(fname):
 
     h = pd.read_csv(fname)
 
+
+
     # creates a sorted list of LGAs 
     LGAs = h["Unnamed: 1"].to_list()
     LGAs = sorted(LGAs[2:-6])
@@ -29,6 +31,8 @@ def preprocess_house(fname):
         for j in range(len(LGAs)):
             LGAs_new[i * len(LGAs) + j] = LGAs[j]
 
+
+
     dict = {} # stores counts and median house prices as list of tuples for each LGA
     row_count = len(h.index)
     for r in [i + 2 for i in range(row_count - 7)]:
@@ -44,18 +48,58 @@ def preprocess_house(fname):
     for i in range(len(quarters)):
         j = 0
         for LGA in sorted(dict.keys()):
-            counts[i * len(LGAs) + j] = dict[LGA][i][0]
-            prices[i * len(LGAs) + j] = dict[LGA][i][1]
+            if "-" not in dict[LGA][i][0]:
+                counts[i * len(LGAs) + j] = int(dict[LGA][i][0].replace(",", ""))
+                prices[i * len(LGAs) + j] = int(dict[LGA][i][1][1:].replace(",", ""))
+            else:
+                counts[i * len(LGAs) + j] = 0
+                prices[i * len(LGAs) + j] = 0
             j += 1
 
     df = pd.DataFrame.from_dict({"Quarter": quarters_new, "LGA": LGAs_new, "Count": counts, "Median House Price": prices})
 
+
+
+    # aggregating data per year
+    years = df["Quarter"].to_list()
+    for i in range(len(years)):
+        years[i] = years[i][4:]
+    df.insert(1, "Year", years, True)
+    df.drop("Quarter", inplace=True, axis=1)
+    df = df.reset_index()
+    df = df.groupby(['Year', 'LGA']).sum()
+
     return df
 
+
+
+
+def preprocess_crime1(fname):
+    # reorganises and cleans crime1 csv
+    # columns: year, lga, incidents, rate per 100k
+
+    df = pd.read_csv(fname, usecols=["Year", "Local Government Area", "Incidents Recorded", 'Rate per 100,000 population']) # contains incidents and rate/100k
+
+    # sorting years in ascending order
+    df = df.sort_values(by=["Year", "Local Government Area"])
+
+    # removing "total" rows
+    df = df[df["Local Government Area"] != "Total"]
+    df = df[df["Local Government Area"] != " Unincorporated Vic"]
+    df = df[df["Local Government Area"] != " Justice Institutions and Immigration Facilities"]
+    df = df.reset_index()
+    df.drop("index", inplace=True, axis=1)
+
+    return df
+
+
 # reading in csv files
-c1 = pd.read_csv("crime1.csv", usecols=["Year", "Local Government Area", "Incidents Recorded", 'Rate per 100,000 population']) # contains incidents and rate/100k
-h1 = preprocess_house("1bflat.csv") 
+h1 = preprocess_house("1bflat.csv") # contains count and median price
+c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 print(h1)
 print(c1)
+h1.to_csv("h1.csv")
+c1.to_csv("c1.csv")
 
-# to add: preprocessing crime csv, year column for house csv
+
+# to add: plot scatter
