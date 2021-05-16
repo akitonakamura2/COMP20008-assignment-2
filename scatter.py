@@ -109,17 +109,49 @@ def preprocess_crime1(fname):
 
 # reading in csv files
 h1 = preprocess_house("1bflat.csv") # contains count and median price
+h2 = preprocess_house("2bhouse.csv") 
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
-print(h1)
-print(c1)
-h1.to_csv("h1.csv")
-c1.to_csv("c1.csv")
+h1 = h1[-79:]
+h2 = h2[-79:]
+c1 = c1[-79:]
+# print(h1)
+# print(c1)
+# h1.to_csv("h1.csv")
+# c1.to_csv("c1.csv")
 
+
+
+# 1 BEDROOM FLATS
 plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
 plt.xlabel("Median Rent Price")
 plt.ylabel("Incidents Recorded")
 plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
 plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot1.png")
+plt.savefig("plot1-2020.png")
+plt.clf()
 
+plt.scatter(h1["Median House Price"], c1["Rate per 100,000 population"])
+plt.xlabel("Median Rent Price")
+plt.ylabel("Rate per 100,000 population")
+plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
+plt.savefig("plot2-2020.png")
+plt.clf()
+
+
+
+# 2 BEDROOM APARTMENTS
+plt.scatter(h2["Median House Price"], c1["Incidents Recorded"])
+plt.xlabel("Median Rent Price")
+plt.ylabel("Incidents Recorded")
+plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom House")
+plt.yticks(np.arange(0, 32000, 2000))
+plt.savefig("plot3-2020.png")
+plt.clf()
+
+plt.scatter(h2["Median House Price"], c1["Rate per 100,000 population"])
+plt.xlabel("Median Rent Price")
+plt.ylabel("Rate per 100,000 population")
+plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Houses")
+plt.savefig("plot4-2020.png")
+plt.clf()
 # to add: plot more things
