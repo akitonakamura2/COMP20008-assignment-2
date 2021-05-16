@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 # contains count, median price for each quarter as cols, LGA in 2nd entry of 
 # each row.
@@ -68,6 +70,7 @@ def preprocess_house(fname):
     df.drop("Quarter", inplace=True, axis=1)
     df = df.reset_index()
     df = df.groupby(['Year', 'LGA']).sum()
+    df = df[-790::]
 
     return df
 
@@ -83,12 +86,23 @@ def preprocess_crime1(fname):
     # sorting years in ascending order
     df = df.sort_values(by=["Year", "Local Government Area"])
 
-    # removing "total" rows
+    # removing misc rows
     df = df[df["Local Government Area"] != "Total"]
     df = df[df["Local Government Area"] != " Unincorporated Vic"]
     df = df[df["Local Government Area"] != " Justice Institutions and Immigration Facilities"]
     df = df.reset_index()
     df.drop("index", inplace=True, axis=1)
+
+
+    # converting rate and incidents to int/float
+    rates = df["Rate per 100,000 population"].to_list()
+    incidents = df["Incidents Recorded"].to_list()
+    for i in range(len(rates)):
+        rates[i] = float(rates[i].replace(",", ""))
+        incidents[i] = int(incidents[i].replace(",", ""))
+    df["Rate per 100,000 population"] = rates
+    df["Incidents Recorded"] = incidents
+
 
     return df
 
@@ -101,5 +115,11 @@ print(c1)
 h1.to_csv("h1.csv")
 c1.to_csv("c1.csv")
 
+plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
+plt.xlabel("Median Rent Price")
+plt.ylabel("Incidents Recorded")
+plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
+plt.yticks(np.arange(0, 32000, 2000))
+plt.savefig("plot1.png")
 
-# to add: plot scatter
+# to add: plot more things
