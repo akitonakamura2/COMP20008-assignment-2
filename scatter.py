@@ -29,8 +29,7 @@ def preprocess_house(fname):
         for j in range(len(LGAs)):
             LGAs_new[i * len(LGAs) + j] = LGAs[j]
 
-    # creates lists for count and median price
-    dict = {} # stores counts and median house prices as list of tuples
+    dict = {} # stores counts and median house prices as list of tuples for each LGA
     row_count = len(h.index)
     for r in [i + 2 for i in range(row_count - 7)]:
         row = h.values.tolist()[r]
@@ -39,12 +38,9 @@ def preprocess_house(fname):
             for j in range(len(quarters)):
                 dict[row[1]].append((row[2*j+2], row[2*j+3]))
     
-    print(sorted(dict.keys()))
-    print(LGAs)
-    
+    # uses dict to create columns for counts and median house prices
     counts = [""] * len(quarters_new)
     prices = [""] * len(quarters_new)
-
     for i in range(len(quarters)):
         j = 0
         for LGA in sorted(dict.keys()):
@@ -57,6 +53,9 @@ def preprocess_house(fname):
     return df
 
 # reading in csv files
-c1 = pd.read_csv("crime1.csv") # contains incidents and rate/100k
-df = preprocess_house("1bflat.csv")
-print(df)
+c1 = pd.read_csv("crime1.csv", usecols=["Year", "Local Government Area", "Incidents Recorded", 'Rate per 100,000 population']) # contains incidents and rate/100k
+h1 = preprocess_house("1bflat.csv") 
+print(h1)
+print(c1)
+
+# to add: preprocessing crime csv, year column for house csv
