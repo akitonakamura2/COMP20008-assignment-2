@@ -113,18 +113,11 @@ four_bh = preprocess_house("4bhouse.csv")
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 
 
-<<<<<<< HEAD
-three_bh = three_bh[-79:]
-four_bh = four_bh[-79:]
-c1 = c1[-79:]
-print(three_bh)
-=======
 # h1 = h1[-79:]
 # h2 = h2[-79:]
 # c1 = c1[-79:]
 
 # print(h1)
->>>>>>> refs/remotes/origin/main
 # print(h1)
 # print(c1)
 # h1.to_csv("h1.csv")
