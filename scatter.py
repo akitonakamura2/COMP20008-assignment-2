@@ -68,7 +68,9 @@ def preprocess_house(fname):
     df.drop("Quarter", inplace=True, axis=1)
     df = df.reset_index()
     df = df.groupby(['Year', 'LGA']).sum()
-    df = df[-790::]
+    df = df[-790::] # 2011 and onwards
+    df = df.reset_index().drop("index", axis=1)
+
 
     return df
 
@@ -111,63 +113,18 @@ h1 = preprocess_house("3bhouse.csv") # contains count and median price
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 
 
-<<<<<<< HEAD
-
-# LIMITING SCATTER PLOTS TO 2020 ONLY
-# COMMENT THIS OUT FOR ALL YEARS
-=======
->>>>>>> 4361cf0563d74730b29349ae38a467fa1873d595
-h1 = h1[-79:]
+# h1 = h1[-79:]
 # h2 = h2[-79:]
-c1 = c1[-79:]
+# c1 = c1[-79:]
 
 # print(h1)
-print(h1)
-print(c1)
+# print(h1)
+# print(c1)
 # h1.to_csv("h1.csv")
 # c1.to_csv("c1.csv")
 
 
 
-<<<<<<< HEAD
-# 1 BEDROOM FLATS
-plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot1-2020.png")
-plt.clf()
-
-plt.scatter(h1["Median House Price"], c1["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
-plt.savefig("plot2-2020.png")
-plt.clf()
-
-
-
-# 2 BEDROOM APARTMENTS
-plt.scatter(h2["Median House Price"], c1["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom House")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot3-2020.png")
-plt.clf()
-
-plt.scatter(h2["Median House Price"], c1["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Houses")
-plt.savefig("plot4-2020.png")
-plt.clf()
-
-
-
-# to add: plot more things, maybe start on a classifier
-=======
 # # 2 BEDROOM FLATS
 # plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
 # plt.xlabel("Median Rent Price")
@@ -204,4 +161,3 @@ plt.clf()
 
 
 # to add: plot more things, add calculations
->>>>>>> 4361cf0563d74730b29349ae38a467fa1873d595
