@@ -6,7 +6,7 @@ import numpy as np
 # each row.
 
 def preprocess_house(fname):
-    # reorganises the house price csv files into a more standard format
+    # reorganises the house price csv files into a more workable format
     # columns: Quarter, LGA, Count, Median
 
     h = pd.read_csv(fname)
@@ -111,9 +111,15 @@ def preprocess_crime1(fname):
 h1 = preprocess_house("1bflat.csv") # contains count and median price
 h2 = preprocess_house("2bhouse.csv") 
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
+
+
+
+# LIMITING SCATTER PLOTS TO 2020 ONLY
+# COMMENT THIS OUT FOR ALL YEARS
 h1 = h1[-79:]
 h2 = h2[-79:]
 c1 = c1[-79:]
+
 # print(h1)
 # print(c1)
 # h1.to_csv("h1.csv")
@@ -154,4 +160,7 @@ plt.ylabel("Rate per 100,000 population")
 plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Houses")
 plt.savefig("plot4-2020.png")
 plt.clf()
-# to add: plot more things
+
+
+
+# to add: plot more things, maybe start on a classifier
