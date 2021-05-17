@@ -381,4 +381,5 @@ plt.title("Median Rent Price vs Rate per 100,000 population for All Housing in 2
 plt.savefig("plotall100k-2020.png")
 plt.clf()
 
+# to add: plot more things, add calculations
 # # to add: plot more things, add calculations

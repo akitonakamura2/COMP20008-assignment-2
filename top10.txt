@@ -1,0 +1,12 @@
+Top 10 Areas Ranked on Crime Rate and Rent price
+
+('Melbourne', 1.444778939423985e-07)
+('Yarra', 2.2309849257768347e-07)
+('Buloke', 3.1511029490542277e-07)
+('Port Phillip', 3.229847536845091e-07)
+('Towong', 3.6744307388177886e-07)
+('Gannawarra', 3.805521710574419e-07)
+('Mount Alexander', 3.9124198757809745e-07)
+('Stonnington', 4.022291176824319e-07)
+('Maribyrnong', 4.7390373560946077e-07)
+('Darebin', 4.860973781941574e-07)
