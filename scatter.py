@@ -67,11 +67,28 @@ def preprocess_house(fname):
     df.insert(1, "Year", years, True)
     df.drop("Quarter", inplace=True, axis=1)
     df = df.reset_index()
-    df = df.groupby(['Year', 'LGA']).sum()
-    df = df[-790::]
-    df = df.reset_index().drop("index", axis=1)
+    prices_new = [''] * (79 * 22)
+    i = 0
+    for year in list(set(years)):
+        for LGA in list(set(df["LGA"].to_list())):
+            temp = df[df["Year"] == year]
+            temp = temp[temp["LGA"] == LGA]
+            temp = temp[temp["Median House Price"] != 0]
+            if len(temp):
+                p = temp["Median House Price"].to_list()
+            else:
+                p = [0]
+            prices_new[i] = sum(p) / len(p)
+            i += 1
 
-    return df
+    df1 = df.groupby(['Year', 'LGA']).sum()
+    df1["Median House Price"] = prices_new
+    df1 = df1[-790::]
+    df1 = df1.reset_index().drop("index", axis=1)
+
+
+
+    return df1
 
 
 
@@ -115,15 +132,14 @@ def preprocess_combined(df1, df2):
 
 
 # reading in csv files
-one_bf = preprocess_house("1bflat.csv") # contains count and median price
+c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
+one_bf = preprocess_combined(preprocess_house("1bflat.csv"), c1) # contains count and median price
 two_bf = preprocess_house("2bflat.csv") 
 two_bh = preprocess_house("2bhouse.csv")
 three_bf = preprocess_house("3bflat.csv") 
 three_bh = preprocess_house("3bhouse.csv")
 four_bh = preprocess_house("4bhouse.csv") 
 all = preprocess_house("all.csv")
-c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
-
 
 
 # three_bh = three_bh[-79:]
@@ -141,7 +157,7 @@ c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 # c1.to_csv("c1.csv")
 
 # 1 BEDROOM FLAT
-plt.scatter(preprocess_combined(one_bf, c1)["Median House Price"], preprocess_combined(one_bf, c1)["Incidents Recorded"])
+plt.scatter(one_bf["Median House Price"], one_bf["Incidents Recorded"])
 plt.xlabel("Median Rent Price")
 plt.ylabel("Incidents Recorded")
 plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
@@ -149,7 +165,7 @@ plt.yticks(np.arange(0, 32000, 2000))
 plt.savefig("plot1bf.png")
 plt.clf()
 
-plt.scatter(preprocess_combined(one_bf, c1)["Median House Price"], preprocess_combined(one_bf, c1)["Rate per 100,000 population"])
+plt.scatter(one_bf["Median House Price"], one_bf["Rate per 100,000 population"])
 plt.xlabel("Median Rent Price")
 plt.ylabel("Rate per 100,000 population")
 plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
