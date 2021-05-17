@@ -154,4 +154,6 @@ plt.ylabel("Rate per 100,000 population")
 plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Houses")
 plt.savefig("plot4-2020.png")
 plt.clf()
-# to add: plot more things
+
+
+# to add: plot more things, add calculations
