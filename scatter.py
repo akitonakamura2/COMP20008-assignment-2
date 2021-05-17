@@ -105,6 +105,11 @@ def preprocess_crime1(fname):
 
     return df
 
+# extra preprocessing steps:
+# 1. merge house and crime dataframes into 1 (they contain the same no. rows)
+# adding the crime rate columns to house df
+# 2. delete rows of dataframe that contain count=0
+# 3. replace plot lines to take rows from the new dataframe
 
 # reading in csv files
 three_bh = preprocess_house("3bhouse.csv") # contains count and median price
@@ -116,6 +121,8 @@ three_bh = three_bh[-79:]
 four_bh = four_bh[-79:]
 c1 = c1[-79:]
 print(three_bh)
+
+
 
 # print(h1)
 # print(h1)
