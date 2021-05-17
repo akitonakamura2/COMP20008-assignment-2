@@ -69,6 +69,7 @@ def preprocess_house(fname):
     df = df.reset_index()
     df = df.groupby(['Year', 'LGA']).sum()
     df = df[-790::]
+    df = df.reset_index().drop("index", axis=1)
 
     return df
 
@@ -114,7 +115,7 @@ c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 three_bh = three_bh[-79:]
 four_bh = four_bh[-79:]
 c1 = c1[-79:]
-print(three_bh
+print(three_bh)
 
 # print(h1)
 # print(h1)
