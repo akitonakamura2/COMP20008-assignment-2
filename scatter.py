@@ -115,27 +115,28 @@ h1 = h1[-79:]
 # h2 = h2[-79:]
 c1 = c1[-79:]
 # print(h1)
+print(h1)
 print(c1)
 # h1.to_csv("h1.csv")
 # c1.to_csv("c1.csv")
 
 
 
-# 2 BEDROOM FLATS
-plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot3bh-2020.png")
-plt.clf()
+# # 2 BEDROOM FLATS
+# plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot3bh-2020.png")
+# plt.clf()
 
-plt.scatter(h1["Median House Price"], c1["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House")
-plt.savefig("plot3bh100k-2020.png")
-plt.clf()
+# plt.scatter(h1["Median House Price"], c1["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House")
+# plt.savefig("plot3bh100k-2020.png")
+# plt.clf()
 
 
 
