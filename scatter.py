@@ -6,7 +6,7 @@ import numpy as np
 # each row.
 
 def preprocess_house(fname):
-    # reorganises the house price csv files into a more workable format
+    # reorganises the house price csv files into a more standard format
     # columns: Quarter, LGA, Count, Median
 
     h = pd.read_csv(fname)
@@ -68,9 +68,7 @@ def preprocess_house(fname):
     df.drop("Quarter", inplace=True, axis=1)
     df = df.reset_index()
     df = df.groupby(['Year', 'LGA']).sum()
-    df = df[-790::] # 2011 and onwards
-    df = df.reset_index().drop("index", axis=1)
-
+    df = df[-790::]
 
     return df
 
@@ -113,9 +111,10 @@ four_bh = preprocess_house("4bhouse.csv")
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 
 
-# h1 = h1[-79:]
-# h2 = h2[-79:]
-# c1 = c1[-79:]
+three_bh = three_bh[-79:]
+four_bh = four_bh[-79:]
+c1 = c1[-79:]
+print(three_bh
 
 # print(h1)
 # print(h1)
