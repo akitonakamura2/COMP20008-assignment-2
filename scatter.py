@@ -137,6 +137,8 @@ def preprocess_combined(df1, df2):
 # reading in csv files
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 one_bf = preprocess_combined(preprocess_house("1bflat.csv"), c1) # contains count and median price
+one_bf_2020 = one_bf[one_bf["Year"] == "2020"]
+# print(one_bf)
 # two_bf = preprocess_house("2bflat.csv") 
 # two_bh = preprocess_house("2bhouse.csv")
 # three_bf = preprocess_house("3bflat.csv") 
@@ -159,24 +161,24 @@ one_bf = preprocess_combined(preprocess_house("1bflat.csv"), c1) # contains coun
 # h1.to_csv("h1.csv")
 # c1.to_csv("c1.csv")
 
-# 1 BEDROOM FLAT
-plt.scatter(one_bf["Median House Price"], one_bf["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot1bf.png")
-plt.clf()
+# # 1 BEDROOM FLAT
+# plt.scatter(one_bf["Median House Price"], one_bf["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot1bf.png")
+# plt.clf()
 
-plt.scatter(one_bf["Median House Price"], one_bf["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
-plt.savefig("plot1bf100k.png")
-plt.clf()
+# plt.scatter(one_bf["Median House Price"], one_bf["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
+# plt.savefig("plot1bf100k.png")
+# plt.clf()
 
 # 1 BEDROOM FLAT 2020
-plt.scatter(one_bf[-79:]["Median House Price"], one_bf[-79:]["Incidents Recorded"])
+plt.scatter(one_bf_2020["Median House Price"], one_bf_2020["Incidents Recorded"])
 plt.xlabel("Median Rent Price")
 plt.ylabel("Incidents Recorded")
 plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat in 2020")
@@ -384,3 +386,4 @@ plt.clf()
 # plt.clf()
 
 # to add: plot more things, add calculations
+# # to add: plot more things, add calculations
