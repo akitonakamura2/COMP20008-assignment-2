@@ -25,7 +25,7 @@ livabilities = dict(sorted(livabilities.items(), key=lambda item: item[1]))
 print(one_bf)
 f= open("top10.txt","w+")
 f.write("Top 10 Areas Ranked on Crime Rate and Rent price\n\n")
-for i in range(20):
+for i in range(10):
     print(list(livabilities.items())[i])
     f.write(str(list(livabilities.items())[i]))
     f.write("\n")
