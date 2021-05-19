@@ -106,6 +106,7 @@ def preprocess_crime1(fname):
     return df
 
 
+
 # reading in csv files
 three_bh = preprocess_house("3bhouse.csv") # contains count and median price
 four_bh = preprocess_house("4bhouse.csv") 
