@@ -6,34 +6,13 @@ from sklearn import metrics
 from scatter import preprocess_house
 from scatter import preprocess_crime1
 
-def preprocess_crime1(fname):
-    # reorganises and cleans crime1 csv
-    # columns: year, lga, incidents, rate per 100k
-
-    df = pd.read_csv(fname, usecols=["Year", "Local Government Area", "Incidents Recorded", 'Rate per 100,000 population']) # contains incidents and rate/100k
-
-    # sorting years in ascending order
-    df = df.sort_values(by=["Year", "Local Government Area"])
-
-    # removing misc rows
-    df = df[df["Local Government Area"] != "Total"]
-    df = df[df["Local Government Area"] != " Unincorporated Vic"]
-    df = df[df["Local Government Area"] != " Justice Institutions and Immigration Facilities"]
-    df = df.reset_index()
-    df.drop("index", inplace=True, axis=1)
-
-
-    # converting rate and incidents to int/float
-    rates = df["Rate per 100,000 population"].to_list()
-    incidents = df["Incidents Recorded"].to_list()
-    for i in range(len(rates)):
-        rates[i] = float(rates[i].replace(",", ""))
-        incidents[i] = int(incidents[i].replace(",", ""))
-    df["Rate per 100,000 population"] = rates
-    df["Incidents Recorded"] = incidents
-
-
-    return df
+# Combines two dataframes and removes rows with 0
+def preprocess_combined(df1, df2):
+    df1["Incidents Recorded"] = df2["Incidents Recorded"]
+    df1["Rate per 100,000 population"] = df2["Rate per 100,000 population"]
+    df1 = df1[df1.Count != 0]
+    df1.reset_index(inplace=True)
+    return df1
 
 #Calculating coefficients
 one_bf = preprocess_house("1bflat.csv") # contains count and median price
