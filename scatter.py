@@ -106,24 +106,40 @@ def preprocess_crime1(fname):
 
 
 # reading in csv files
-h1 = preprocess_house("3bhouse.csv") # contains count and median price
-# h2 = preprocess_house("4bhouse.csv") 
+three_bh = preprocess_house("3bhouse.csv") # contains count and median price
+four_bh = preprocess_house("4bhouse.csv") 
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 
 
-h1 = h1[-79:]
-# h2 = h2[-79:]
+three_bh = three_bh[-79:]
+four_bh = four_bh[-79:]
 c1 = c1[-79:]
+print(three_bh)
 # print(h1)
-print(h1)
-print(c1)
+# print(c1)
 # h1.to_csv("h1.csv")
 # c1.to_csv("c1.csv")
 
+# def plot_scatter(house_type, df1, df2):
+#     plt.scatter(df1["Median House Price"], df2["Incidents Recorded"])
+#     plt.xlabel("Median Rent Price")
+#     plt.ylabel("Incidents Recorded")
+#     plt.title("Median Rent Price vs Incidents Recorded for", house_type)
+#     plt.yticks(np.arange(0, 32000, 2000))
+#     plt.savefig(house_type,".png")
+#     plt.clf()
 
+#     plt.scatter(df1["Median House Price"], df2["Rate per 100,000 population"])
+#     plt.xlabel("Median Rent Price")
+#     plt.ylabel("Rate per 100,000 population")
+#     plt.title("Median Rent Price vs Rate per 100,000 population", house_type)
+#     plt.savefig(house_type, ".png")
+#     plt.clf()
 
-# # 2 BEDROOM FLATS
-# plt.scatter(h1["Median House Price"], c1["Incidents Recorded"])
+# plot_scatter("test", three_bh, c1)
+
+# # 3 BEDROOM HOUSES 2020
+# plt.scatter(three_bh["Median House Price"], c1["Incidents Recorded"])
 # plt.xlabel("Median Rent Price")
 # plt.ylabel("Incidents Recorded")
 # plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House")
@@ -131,7 +147,7 @@ print(c1)
 # plt.savefig("plot3bh-2020.png")
 # plt.clf()
 
-# plt.scatter(h1["Median House Price"], c1["Rate per 100,000 population"])
+# plt.scatter(three_bh["Median House Price"], c1["Rate per 100,000 population"])
 # plt.xlabel("Median Rent Price")
 # plt.ylabel("Rate per 100,000 population")
 # plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House")
@@ -140,8 +156,8 @@ print(c1)
 
 
 
-# # 2 BEDROOM APARTMENTS
-# plt.scatter(h2["Median House Price"], c1["Incidents Recorded"])
+# # 4 BEDROOM HOUSES 2020
+# plt.scatter(four_bh["Median House Price"], c1["Incidents Recorded"])
 # plt.xlabel("Median Rent Price")
 # plt.ylabel("Incidents Recorded")
 # plt.title("Median Rent Price vs Incidents Recorded for 4 Bedroom House")
@@ -149,7 +165,7 @@ print(c1)
 # plt.savefig("plot4bh-2020.png")
 # plt.clf()
 
-# plt.scatter(h2["Median House Price"], c1["Rate per 100,000 population"])
+# plt.scatter(four_bh["Median House Price"], c1["Rate per 100,000 population"])
 # plt.xlabel("Median Rent Price")
 # plt.ylabel("Rate per 100,000 population")
 # plt.title("Median Rent Price vs Rate per 100,000 population for 4 Bedroom House")
