@@ -67,10 +67,13 @@ def preprocess_house(fname):
     df.insert(1, "Year", years, True)
     df.drop("Quarter", inplace=True, axis=1)
     df = df.reset_index()
+    
     prices_new = [''] * (79 * 22)
     i = 0
-    for year in list(set(years)):
-        for LGA in list(set(df["LGA"].to_list())):
+    year_set = sorted(list(set(years)))
+    LGA_set = sorted(list(set(df["LGA"].to_list())))
+    for year in year_set:
+        for LGA in LGA_set:
             temp = df[df["Year"] == year]
             temp = temp[temp["LGA"] == LGA]
             temp = temp[temp["Median House Price"] != 0]
@@ -126,7 +129,7 @@ def preprocess_crime1(fname):
 def preprocess_combined(df1, df2):
     df1["Incidents Recorded"] = df2["Incidents Recorded"]
     df1["Rate per 100,000 population"] = df2["Rate per 100,000 population"]
-    df1 = df1[df1.Count != 0]
+    df1 = df1[df1["Median House Price"] != 0]
     df1.reset_index(inplace=True)
     return df1
 

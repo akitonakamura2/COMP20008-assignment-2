@@ -10,10 +10,9 @@ from scatter import preprocess_crime1
 def preprocess_combined(df1, df2):
     df1["Incidents Recorded"] = df2["Incidents Recorded"]
     df1["Rate per 100,000 population"] = df2["Rate per 100,000 population"]
-    df1 = df1[df1.Count != 0]
+    df1 = df1[df1["Median House Price"] != 0]
     df1.reset_index(inplace=True)
     return df1
-
 #Calculating coefficients
 one_bf = preprocess_house("1bflat.csv") # contains count and median price
 two_bf = preprocess_house("2bflat.csv") 
