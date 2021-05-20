@@ -182,6 +182,7 @@ plt.title('Elbow Method')
 plt.xlabel('Number of clusters')
 plt.ylabel('WCSS')
 plt.savefig("1bf-elbow.png")
+plt.clf()
 cluster_kmeans(X, 4, "plot-1bf-kmeans.png")
 cluster_agglomerative(X, 4, "plot-1bf-agglomerative.png")
 
