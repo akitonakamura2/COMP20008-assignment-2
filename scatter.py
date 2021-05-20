@@ -129,19 +129,25 @@ def preprocess_combined(df1, df2):
     df1.reset_index(inplace=True)
     return df1
 
-def cluster_kmeans(X, k, fname):
+def cluster_kmeans(X, k, fname, htype):
     kmeans = KMeans(n_clusters=k, init='k-means++', max_iter=300, n_init=10, random_state=0)
     kmeans.fit_predict(X)
     plt.scatter(X[:,0], X[:,1])
     plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red')
+    plt.xlabel("Median Rent Price")
+    plt.ylabel("Incidents Recorded")
+    plt.title(f"Median Rent Price vs Incidents Recorded for {htype}")
     plt.savefig(fname)
     plt.clf()
     return 0
 
 
-def cluster_agglomerative(X, k, fname):
+def cluster_agglomerative(X, k, fname, htype):
     clustering = AgglomerativeClustering(n_clusters=k).fit(X)
     plt.scatter(X[:,0],X[:,1], c=clustering.labels_, cmap='rainbow')
+    plt.xlabel("Median Rent Price")
+    plt.ylabel("Incidents Recorded")
+    plt.title(f"Median Rent Price vs Incidents Recorded for {htype}")
     plt.savefig(fname)
     plt.clf()
     return 0
@@ -183,8 +189,8 @@ plt.xlabel('Number of clusters')
 plt.ylabel('WCSS')
 plt.savefig("1bf-elbow.png")
 plt.clf()
-cluster_kmeans(X, 4, "plot-1bf-kmeans.png")
-cluster_agglomerative(X, 4, "plot-1bf-agglomerative.png")
+cluster_kmeans(X, 4, "plot-1bf-kmeans.png", "1 Bedroom Flats")
+cluster_agglomerative(X, 4, "plot-1bf-agglomerative.png", "1 Bedroom Flats")
 
 p = two_bh["Median House Price"].to_list()
 c = two_bh["Rate per 100,000 population"].to_list()
@@ -192,8 +198,8 @@ l = []
 for i in range(len(two_bh)):
     l.append([p[i], c[i]])
 Y = np.array(l)
-cluster_kmeans(Y, 4, "plot-2bh-kmeans.png")
-cluster_agglomerative(Y, 4, "plot-2bh-agglomerative.png")
+cluster_kmeans(Y, 4, "plot-2bh-kmeans.png", "2 Bedroom Houses")
+cluster_agglomerative(Y, 4, "plot-2bh-agglomerative.png", "2 Bedroom Houses")
 
 # print(h1)
 # print(h1)
