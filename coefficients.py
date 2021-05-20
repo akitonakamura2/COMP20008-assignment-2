@@ -16,7 +16,7 @@ def price_discretise(df, low, high):
             price_category.append("high")
     df.insert(len(df.columns), "Price Category", price_category)
     return df
-
+ 
 def crime_discretise(df, low, high, low100k, high100k):
     crime_category = []
     crime_category_100k = []

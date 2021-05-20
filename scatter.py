@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.cluster import KMeans
 
 # contains count, median price for each quarter as cols, LGA in 2nd entry of 
 # each row.
@@ -89,12 +90,7 @@ def preprocess_house(fname):
     df1 = df1[-790::]
     df1 = df1.reset_index().drop("index", axis=1)
 
-
-
     return df1
-
-
-
 
 def preprocess_crime1(fname):
     # reorganises and cleans crime1 csv
@@ -133,23 +129,43 @@ def preprocess_combined(df1, df2):
     df1.reset_index(inplace=True)
     return df1
 
+def cluster_kmeans(df, k, fname):
+    p = df["Median House Price"].to_list()
+    c = df["Rate per 100,000 population"].to_list()
+    l = []
+    for i in range(len(df)):
+        l.append([p[i], c[i]])
+    X = np.array(l)
+    kmeans = KMeans(n_clusters=k, init='k-means++', max_iter=300, n_init=10, random_state=0)
+    y_pred = kmeans.fit_predict(X)
+    plt.scatter(X[:,0], X[:,1])
+    plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red')
+    plt.savefig(fname)
+    return 0
+
+
+
+
+
 
 # reading in csv files
 c1 = preprocess_crime1("crime1.csv") # contains incidents and rate/100k
 one_bf = preprocess_combined(preprocess_house("1bflat.csv"), c1) # contains count and median price
 one_bf_2020 = one_bf[one_bf["Year"] == "2020"]
-two_bf = preprocess_combined(preprocess_house("2bflat.csv"), c1) # contains count and median price
-two_bf_2020 = two_bf[two_bf["Year"] == "2020"]
-three_bf = preprocess_combined(preprocess_house("3bflat.csv"), c1) # contains count and median price
-three_bf_2020 = three_bf[three_bf["Year"] == "2020"]
-two_bh = preprocess_combined(preprocess_house("2bhouse.csv"), c1) # contains count and median price
-two_bh_2020 = two_bh[two_bh["Year"] == "2020"]
-three_bh = preprocess_combined(preprocess_house("3bhouse.csv"), c1) # contains count and median price
-three_bh_2020 = three_bh[three_bh["Year"] == "2020"]
-four_bh = preprocess_combined(preprocess_house("4bhouse.csv"), c1) # contains count and median price
-four_bh_2020 = four_bh[four_bh["Year"] == "2020"]
-all = preprocess_combined(preprocess_house("all.csv"), c1) # contains count and median price
-all_2020 = all[all["Year"] == "2020"]
+# two_bf = preprocess_combined(preprocess_house("2bflat.csv"), c1) # contains count and median price
+# two_bf_2020 = two_bf[two_bf["Year"] == "2020"]
+# three_bf = preprocess_combined(preprocess_house("3bflat.csv"), c1) # contains count and median price
+# three_bf_2020 = three_bf[three_bf["Year"] == "2020"]
+# two_bh = preprocess_combined(preprocess_house("2bhouse.csv"), c1) # contains count and median price
+# two_bh_2020 = two_bh[two_bh["Year"] == "2020"]
+# three_bh = preprocess_combined(preprocess_house("3bhouse.csv"), c1) # contains count and median price
+# three_bh_2020 = three_bh[three_bh["Year"] == "2020"]
+# four_bh = preprocess_combined(preprocess_house("4bhouse.csv"), c1) # contains count and median price
+# four_bh_2020 = four_bh[four_bh["Year"] == "2020"]
+# all = preprocess_combined(preprocess_house("all.csv"), c1) # contains count and median price
+# all_2020 = all[all["Year"] == "2020"]
+
+cluster_kmeans(one_bf, 4, "plot-1bf-cluster.png")
 
 # print(h1)
 # print(h1)
@@ -157,229 +173,229 @@ all_2020 = all[all["Year"] == "2020"]
 # h1.to_csv("h1.csv")
 # c1.to_csv("c1.csv")
 
-# 1 BEDROOM FLAT
-plt.scatter(one_bf["Median House Price"], one_bf["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot1bf.png")
-plt.clf()
+# # 1 BEDROOM FLAT
+# plt.scatter(one_bf["Median House Price"], one_bf["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot1bf.png")
+# plt.clf()
 
-plt.scatter(one_bf["Median House Price"], one_bf["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
-plt.savefig("plot1bf100k.png")
-plt.clf()
+# plt.scatter(one_bf["Median House Price"], one_bf["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat")
+# plt.savefig("plot1bf100k.png")
+# plt.clf()
 
-# 1 BEDROOM FLAT 2020
-plt.scatter(one_bf_2020["Median House Price"], one_bf_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot1bf-2020.png")
-plt.clf()
+# # 1 BEDROOM FLAT 2020
+# plt.scatter(one_bf_2020["Median House Price"], one_bf_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 1 Bedroom Flat in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot1bf-2020.png")
+# plt.clf()
 
-plt.scatter(one_bf_2020["Median House Price"], one_bf_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat in 2020")
-plt.savefig("plot1bf100k-2020.png")
-plt.clf()
+# plt.scatter(one_bf_2020["Median House Price"], one_bf_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat in 2020")
+# plt.savefig("plot1bf100k-2020.png")
+# plt.clf()
 
-# 2 BEDROOM FLAT
-plt.scatter(two_bf["Median House Price"], two_bf["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom Flat")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot2bf.png")
-plt.clf()
+# # 2 BEDROOM FLAT
+# plt.scatter(two_bf["Median House Price"], two_bf["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom Flat")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot2bf.png")
+# plt.clf()
 
-plt.scatter(two_bf["Median House Price"], two_bf["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Flat")
-plt.savefig("plot2bf100k.png")
-plt.clf()
+# plt.scatter(two_bf["Median House Price"], two_bf["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Flat")
+# plt.savefig("plot2bf100k.png")
+# plt.clf()
 
-# 2 BEDROOM FLAT 2020
-plt.scatter(two_bf_2020["Median House Price"], two_bf_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom Flat in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot2bf-2020.png")
-plt.clf()
+# # 2 BEDROOM FLAT 2020
+# plt.scatter(two_bf_2020["Median House Price"], two_bf_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom Flat in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot2bf-2020.png")
+# plt.clf()
 
-plt.scatter(two_bf_2020["Median House Price"], two_bf_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Flat in 2020")
-plt.savefig("plot2bf100k-2020.png")
-plt.clf()
+# plt.scatter(two_bf_2020["Median House Price"], two_bf_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom Flat in 2020")
+# plt.savefig("plot2bf100k-2020.png")
+# plt.clf()
 
-# 2 BEDROOM HOUSE
-plt.scatter(two_bh["Median House Price"], two_bh["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom House")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot2bh.png")
-plt.clf()
+# # 2 BEDROOM HOUSE
+# plt.scatter(two_bh["Median House Price"], two_bh["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom House")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot2bh.png")
+# plt.clf()
 
-plt.scatter(two_bh["Median House Price"], two_bh["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom House")
-plt.savefig("plot2bh100k.png")
-plt.clf()
+# plt.scatter(two_bh["Median House Price"], two_bh["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom House")
+# plt.savefig("plot2bh100k.png")
+# plt.clf()
 
-# 2 BEDROOM HOUSE 2020
-plt.scatter(two_bh_2020["Median House Price"], two_bh_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom House in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot2bh-2020.png")
-plt.clf()
+# # 2 BEDROOM HOUSE 2020
+# plt.scatter(two_bh_2020["Median House Price"], two_bh_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 2 Bedroom House in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot2bh-2020.png")
+# plt.clf()
 
-plt.scatter(two_bh_2020["Median House Price"], two_bh_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom House in 2020")
-plt.savefig("plot2bh100k-2020.png")
-plt.clf()
+# plt.scatter(two_bh_2020["Median House Price"], two_bh_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 2 Bedroom House in 2020")
+# plt.savefig("plot2bh100k-2020.png")
+# plt.clf()
 
-# 3 BEDROOM FLAT
-plt.scatter(three_bf["Median House Price"], three_bf["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom Flat")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot3bf.png")
-plt.clf()
+# # 3 BEDROOM FLAT
+# plt.scatter(three_bf["Median House Price"], three_bf["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom Flat")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot3bf.png")
+# plt.clf()
 
-plt.scatter(three_bf["Median House Price"], three_bf["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom Flat")
-plt.savefig("plot3bf100k.png")
-plt.clf()
+# plt.scatter(three_bf["Median House Price"], three_bf["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom Flat")
+# plt.savefig("plot3bf100k.png")
+# plt.clf()
 
-# 3 BEDROOM FLAT 2020
-plt.scatter(three_bf_2020["Median House Price"], three_bf_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot3bf-2020.png")
-plt.clf()
+# # 3 BEDROOM FLAT 2020
+# plt.scatter(three_bf_2020["Median House Price"], three_bf_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot3bf-2020.png")
+# plt.clf()
 
-plt.scatter(three_bf_2020["Median House Price"], three_bf_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House in 2020")
-plt.savefig("plot3bf100k-2020.png")
-plt.clf()
+# plt.scatter(three_bf_2020["Median House Price"], three_bf_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House in 2020")
+# plt.savefig("plot3bf100k-2020.png")
+# plt.clf()
 
-# 3 BEDROOM HOUSE
-plt.scatter(three_bh["Median House Price"], three_bh["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot3bh.png")
-plt.clf()
+# # 3 BEDROOM HOUSE
+# plt.scatter(three_bh["Median House Price"], three_bh["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot3bh.png")
+# plt.clf()
 
-plt.scatter(three_bh["Median House Price"], three_bh["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House")
-plt.savefig("plot3bh100k.png")
-plt.clf()
+# plt.scatter(three_bh["Median House Price"], three_bh["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House")
+# plt.savefig("plot3bh100k.png")
+# plt.clf()
 
-# 3 BEDROOM HOUSE 2020
-plt.scatter(three_bh_2020["Median House Price"], three_bh_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot3bh-2020.png")
-plt.clf()
+# # 3 BEDROOM HOUSE 2020
+# plt.scatter(three_bh_2020["Median House Price"], three_bh_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 3 Bedroom House in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot3bh-2020.png")
+# plt.clf()
 
-plt.scatter(three_bh_2020["Median House Price"], three_bh_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House in 2020")
-plt.savefig("plot3bh100k-2020.png")
-plt.clf()
+# plt.scatter(three_bh_2020["Median House Price"], three_bh_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 3 Bedroom House in 2020")
+# plt.savefig("plot3bh100k-2020.png")
+# plt.clf()
 
-# 4 BEDROOM HOUSE
-plt.scatter(four_bh["Median House Price"], four_bh["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 4 Bedroom House")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot4bh.png")
-plt.clf()
+# # 4 BEDROOM HOUSE
+# plt.scatter(four_bh["Median House Price"], four_bh["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 4 Bedroom House")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot4bh.png")
+# plt.clf()
 
-plt.scatter(four_bh["Median House Price"], four_bh["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 4 Bedroom House")
-plt.savefig("plot4bh100k.png")
-plt.clf()
+# plt.scatter(four_bh["Median House Price"], four_bh["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 4 Bedroom House")
+# plt.savefig("plot4bh100k.png")
+# plt.clf()
 
-# 4 BEDROOM HOUSE 2020
-plt.scatter(four_bh_2020["Median House Price"], four_bh_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for 4 Bedroom House in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plot4bh-2020.png")
-plt.clf()
+# # 4 BEDROOM HOUSE 2020
+# plt.scatter(four_bh_2020["Median House Price"], four_bh_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for 4 Bedroom House in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plot4bh-2020.png")
+# plt.clf()
 
-plt.scatter(four_bh_2020["Median House Price"], four_bh_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for 4 Bedroom House in 2020")
-plt.savefig("plot4bh100k-2020.png")
-plt.clf()
+# plt.scatter(four_bh_2020["Median House Price"], four_bh_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for 4 Bedroom House in 2020")
+# plt.savefig("plot4bh100k-2020.png")
+# plt.clf()
 
-# ALL
-plt.scatter(all["Median House Price"], all["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for All Housing")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plotall.png")
-plt.clf()
+# # ALL
+# plt.scatter(all["Median House Price"], all["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for All Housing")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plotall.png")
+# plt.clf()
 
-plt.scatter(all["Median House Price"], all["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for All Housing")
-plt.savefig("plotall100k.png")
-plt.clf()
+# plt.scatter(all["Median House Price"], all["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for All Housing")
+# plt.savefig("plotall100k.png")
+# plt.clf()
 
-# ALL 2020
-plt.scatter(all_2020["Median House Price"], all_2020["Incidents Recorded"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Incidents Recorded")
-plt.title("Median Rent Price vs Incidents Recorded for All Housing in 2020")
-plt.yticks(np.arange(0, 32000, 2000))
-plt.savefig("plotall-2020.png")
-plt.clf()
+# # ALL 2020
+# plt.scatter(all_2020["Median House Price"], all_2020["Incidents Recorded"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Incidents Recorded")
+# plt.title("Median Rent Price vs Incidents Recorded for All Housing in 2020")
+# plt.yticks(np.arange(0, 32000, 2000))
+# plt.savefig("plotall-2020.png")
+# plt.clf()
 
-plt.scatter(all_2020["Median House Price"], all_2020["Rate per 100,000 population"])
-plt.xlabel("Median Rent Price")
-plt.ylabel("Rate per 100,000 population")
-plt.title("Median Rent Price vs Rate per 100,000 population for All Housing in 2020")
-plt.savefig("plotall100k-2020.png")
-plt.clf()
+# plt.scatter(all_2020["Median House Price"], all_2020["Rate per 100,000 population"])
+# plt.xlabel("Median Rent Price")
+# plt.ylabel("Rate per 100,000 population")
+# plt.title("Median Rent Price vs Rate per 100,000 population for All Housing in 2020")
+# plt.savefig("plotall100k-2020.png")
+# plt.clf()
 
-# to add: plot more things, add calculations
 # # to add: plot more things, add calculations
+# # # to add: plot more things, add calculations

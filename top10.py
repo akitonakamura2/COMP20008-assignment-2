@@ -7,8 +7,9 @@ c1 = preprocess_crime1("crime1.csv")
 one_bf = preprocess_combined(h1, c1)
 
 livabilities = {}
+one_bf["Livability"] = 1/(one_bf["Median House Price"] * one_bf["Rate per 100,000 population"])
+
 for i in range(620):
-    one_bf["Livability"] = 1/(one_bf["Median House Price"] * one_bf["Rate per 100,000 population"])
     if one_bf["LGA"][i] in livabilities:
         livabilities[one_bf["LGA"][i]] += one_bf["Livability"][i]
     else:
