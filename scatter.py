@@ -136,7 +136,7 @@ def cluster_kmeans(X, k, fname, htype):
     plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red')
     plt.xlabel("Median Rent Price")
     plt.ylabel("Incidents Recorded")
-    plt.title(f"Median Rent Price vs Incidents Recorded for {htype}")
+    plt.title(f"Median Rent Price vs Incidents Recorded per 100k population for {htype}", fontsize=10)
     plt.savefig(fname)
     plt.clf()
     return 0
@@ -147,7 +147,7 @@ def cluster_agglomerative(X, k, fname, htype):
     plt.scatter(X[:,0],X[:,1], c=clustering.labels_, cmap='rainbow')
     plt.xlabel("Median Rent Price")
     plt.ylabel("Incidents Recorded")
-    plt.title(f"Median Rent Price vs Incidents Recorded for {htype}")
+    plt.title(f"Median Rent Price vs Incidents Recorded per 100k population for {htype}", fontsize=10)
     plt.savefig(fname)
     plt.clf()
     return 0
