@@ -1,0 +1,149 @@
+Analysis of the plots based on the visual plots and correlation score from 'correlations.txt' rounded to 4 decimal places
+
+
+1bf Pearson: 0.6866
+plot1bf-2020.png
+
+Median Rent Price vs Incidents Recorded for 1 Bedroom Flat in 2020:
+Some correlation between median rent price and incidents recorded; As the median rent price increases, the incidents seem to increase. There are wider range of incidents recorded towards higher rent price.
+
+
+1bf NMI: 0.8685
+plot1bf.png
+
+Median Rent Price vs Incidents recorded for 1 Bedroom Flat:
+Higher correlation between median rent price and incidents recorded; As the median rent price increases, the incidents increases. There are wider range of incidents recorded towards higher rent price and more clustred at the lower end.
+
+
+1bf100k Pearson: 0.3763
+plot1bf100k-2020.png
+
+Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat in 2020:
+Little correlation between median rent price and rate per 100,000 population. The scatter plot shows potential outliers towards the higher end of the median rent price and rate per 100,000 population which when excluded could result in a negative correlation.  
+
+
+1bf100k NMI: 0.8717
+plot1bf100k.png
+
+Median Rent Price vs Rate per 100,000 population for 1 Bedroom Flat:
+High correlation between median rent price and rate per 100,000 population. Plot clustered at the rates under 10,000 with potential outliers towards the higher end of the median rent price and rate per 100,000 population.
+
+
+2bf Pearson: 0.6060
+plot2bf-2020.png
+Median Rent Price vs Incidents Recorded for 2 Bedroom Flat in 2020:
+Some correlation between median rent price and incidents recorded; As the median rent price increases, the incidents seems to increase. There are wider range of incidents recorded towards higher rent price.
+
+
+2bf NMI: 0.8922
+plot2bf.png
+Median Rent Price vs Incidents Recorded for 2 Bedroom Flat:
+High correlation between median rent price and incidents recorded; As the median rent price increases, the incidents tends to increase. There are wider range of incidents recorded towards higher rent price, but highly clustered towards the lower end of median rent price and incidents recorded. Potential outliers towards the higher ends.
+
+
+2bf100k Pearson: 0.3407
+plot2bf100k-2020.png
+Median Rent Price vs Rate per 100,000 population for 2 Bedroom Flat in 2020:
+Little correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population which when excluded could result in a negative correlation.  
+
+
+2bf100k NMI: 0.8975
+plot2bf100k.png
+Median Rent Price vs Rate per 100,000 population for 2 Bedroom Flat:
+High correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population and highly clustered towards the lower end of median rent price and rate per 100,000 population under 10,000.
+
+
+2bh Pearson: 0.5772
+plot2bh-2020.png
+Median Rent Price vs Incidents Recorded for 2 Bedroom House in 2020:
+some correlation between median rent price and incidents recorded; As the median rent price increases, the incidents seems to increase. There are wider range of incidents recorded towards higher rent price.
+
+
+2bh NMI: 0.9136
+plot2bh.png
+Median Rent Price vs Incidents Recorded for 2 Bedroom House:
+High correlation between median rent price and incidents recorded; As the median rent price increases, the incidents increases. There are wider range of incidents recorded towards higher rent price, but highly clustered towards the lower end of median rent price and incidents recorded. Potential outliers towards the higher ends.
+
+
+2bh100k Pearson: 0.3225
+Median Rent Price vs Rate per 100,000 pupulation for 2 Bedroom House in 2020:
+Little correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population which when excluded could result in a negative correlation.
+
+
+2bh100k NMI: 0.9193
+plot2bh100k.png
+Median Rent Price vs Rate per 100,000 pupulation for 2 Bedroom House:
+High correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population and highly clustered towards median rent price under 400 and rate per 100,000 population under 10,000.
+
+
+3bf Pearson: 0.6669
+plot3bf-2020.png
+Median Rent Price vs Incidents Recorded for 3 Bedroom House in 2020:
+Some correlation between median rent price and incidents recorded; As the median rent price increases, the incidents seems to increase. There are wider range of incidents recorded towards higher rent price.
+
+
+3bf NMI: 0.8365
+plot3bf.png
+Median Rent Price vs Incidents Recorded for 3 Bedroom Flat:
+Higher correlation between rent price and incidents recorded; As the median rent price increases, the incidents tends to increase. There are wider range of incidents recorded towards higher rent price, but highly clustered towards the lower end of median rent price and incidents recorded. Potential outliers towards the higher ends.
+
+
+3bf100k Pearson: 0.4064
+plot3bf100k-2020.png
+Median Rent Price vs Rate per 100,000 population for 3 Bedroom House in 2020:
+Little correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population which when excluded could result in a negative correlation.
+(Note: 3 Bedroom House?)
+
+
+3bf100k NMI: 0.8368
+plot3bf100k.png
+Median Rent Price vs Rate per 100,000 population for 3 Bedroom Flat:
+High correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population and highly clustered towards median rent price under 500 and rate per 100,000 population under 10,000.
+
+
+3bh Pearson: 0.5193
+plot3bh-2020.png
+Median Rent Price vs Incidents Recorde for 3 Bedroom house in 2020:
+Some correlation between median rent price and incidents recorded; As the median rent price increases, the incidents seem to increase. There are wider range of incidents recorded towards higher rent price with little cluster at the lower ends.
+
+
+3bh NMI: 0.9257
+plot3bh.png
+Median Rent Price vs Incidents Recorded for 3 Bedroom House:
+High correlation between rent price and incidents recorded. There are wider range of incidents recorded towards higher rent price, but highly clustered towards the lower end of median rent price under 500 and incidents recordedunder 18,000. Potential outliers towards the higher ends.
+
+
+3bh100k Pearson: 0.2937
+plot3bh100k-2020.png
+Median Rent Price vs Rate per 100,000 population for 3 Bedroom House in 2020:
+Little to no correlation between Median Rent Price and Rate per 100,000 population. Data points seems to all spread out with little cluster at the range between median rent price of 200 to 450 and rate between 3,000 to 9,000.
+
+
+3bh100k NMI: 0.9323
+plot3bh100k.png
+Median Rent Price vs Rate per 100,000 population for 3 Bedroom House:
+High correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population with some cluster at median rent under 710 and highly clustered towards median rent price under 500 and rate per 100,000 population under 10,000.
+
+
+4bh Pearson: 0.5257
+plot4bh-2020.png
+Median Rent Price vs Incidents Recorded for 4 Bedroom House in 2020:
+Some correlation between median rent price and incidents recorded. Some cluster between median price under 500 and incidents recored under 4,000. Plot widely spread.
+
+
+4bh NMI: 0.9095
+plot4bh.png
+Median Rent Price vs Incidents Recorded for 4 Bedroom House:
+High correlation between rent price and incidents recorded. There are wider range of incidents recorded towards higher rent price, but highly clustered towards the lower end of median rent price under 600 and incidents recordedunder 20,000. Potential outliers towards the higher ends.
+
+
+4bh100k Pearson: 0.3134
+plot4bh100k-2020.png
+Median Rent Price vs Rate per 100,000 population for 4 Bedroom House in 2020:
+Little to no correlation between median rent price and rate per 100,000 population. Data points seems to all spread out with little cluster at the range between median rent price of 300 to 450 and rate between 4,000 to 8,000.
+
+
+4bh100k NMI: 0.9148
+plot4bh100k.png
+Median Rent Price vs Rate per 100,000 population for 4 Bedroom House:
+High correlation between median rent price and rate per 100,000 population. There could be potential outliers towards the higher end of the median rent price and rate per 100,000 population with some cluster at median rent under 650 and highly clustered towards median rent price under 550 and rate per 100,000 population under 10,000.
