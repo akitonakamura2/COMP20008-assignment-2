@@ -1,5 +1,4 @@
-Top 10 Areas Ranked on Crime Rate and Rent price
-
+Top 10 (Unsafe) Areas Ranked on Crime Rate and Rent price
 ('Melbourne', 1.444778939423985e-07)
 ('Yarra', 2.464920711339441e-07)
 ('Port Phillip', 3.229847536845091e-07)
@@ -10,3 +9,15 @@ Top 10 Areas Ranked on Crime Rate and Rent price
 ('Moreland', 5.395784708473804e-07)
 ('Melton', 5.679321162577872e-07)
 ('Frankston', 5.78668858333759e-07)
+
+Top 10 Safest Areas
+('Yarra', 2.464920711339441e-07)
+('Port Phillip', 3.229847536845091e-07)
+('Stonnington', 4.022291176824319e-07)
+('Maribyrnong', 4.7390373560946077e-07)
+('Darebin', 4.860973781941574e-07)
+('Greater Dandenong', 5.172554641677974e-07)
+('Moreland', 5.395784708473804e-07)
+('Melton', 5.679321162577872e-07)
+('Frankston', 5.78668858333759e-07)
+('Hume', 6.102088413811213e-07)
