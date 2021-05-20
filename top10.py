@@ -33,8 +33,10 @@ for i in range(10):
     f.write(str(list(livabilities.items())[i]))
     f.write("\n")
 
-print("\n")
+print("\nTop 10 Safest Areas")
 for i in range(1, 11):
     print(list(livabilities.items())[-i])
+    f.write(str(list(livabilities.items())[i]))
+    f.write("\n")
      
 f.close() 
