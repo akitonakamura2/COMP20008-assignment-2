@@ -1,0 +1,37 @@
+Top 10 (Unsafe) Areas Ranked on Crime and Rent Price
+Low Rent Price
+('Latrobe', 6.352648554646513e-07)
+('Mildura', 6.926677153889073e-07)
+('Horsham', 7.223957453946699e-07)
+('Greater Shepparton', 7.22676796465211e-07)
+('Ballarat', 7.414318100692331e-07)
+('Warrnambool', 8.43248955436913e-07)
+('Ararat', 8.55795377495148e-07)
+('East Gippsland', 8.70558275918602e-07)
+('Wodonga', 9.344803649326403e-07)
+('Wellington', 9.38776985380511e-07)
+
+Mid Rent Price
+('Maribyrnong', 4.7390373560946077e-07)
+('Darebin', 4.860973781941574e-07)
+('Greater Dandenong', 5.172554641677974e-07)
+('Frankston', 5.78668858333759e-07)
+('Hume', 6.102088413811213e-07)
+('Brimbank', 6.251122138512715e-07)
+('Whittlesea', 6.597147282941584e-07)
+('Banyule', 6.686727754033669e-07)
+('Hobsons Bay', 6.718932952061723e-07)
+('Kingston', 7.150446015480841e-07)
+
+High Rent Price
+('Melbourne', 1.444778939423985e-07)
+('Yarra', 2.464920711339441e-07)
+('Port Phillip', 3.229847536845091e-07)
+('Stonnington', 4.022291176824319e-07)
+('Moreland', 5.395784708473804e-07)
+('Melton', 5.679321162577872e-07)
+('Moonee Valley', 6.228299108532059e-07)
+('Bayside', 8.13306962970358e-07)
+('Monash', 8.567129148148774e-07)
+('Boroondara', 9.476977372416822e-07)
+
