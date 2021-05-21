@@ -172,10 +172,10 @@ four_bh_2020 = four_bh[four_bh["Year"] == "2020"]
 all = preprocess_combined(preprocess_house("all.csv"), c1) # contains count and median price
 all_2020 = all[all["Year"] == "2020"]
 
-p = one_bf["Median House Price"].to_list()
-c = one_bf["Rate per 100,000 population"].to_list()
+p = all["Median House Price"].to_list()
+c = all["Rate per 100,000 population"].to_list()
 l = []
-for i in range(len(one_bf)):
+for i in range(len(all)):
     l.append([p[i], c[i]])
 X = np.array(l)
 wcss = []
@@ -187,10 +187,10 @@ plt.plot(range(1, 11), wcss)
 plt.title('Elbow Method')
 plt.xlabel('Number of clusters')
 plt.ylabel('WCSS')
-plt.savefig("1bf-elbow.png")
+plt.savefig("all-elbow.png")
 plt.clf()
-cluster_kmeans(X, 4, "plot-1bf-kmeans.png", "1 Bedroom Flats")
-cluster_agglomerative(X, 4, "plot-1bf-agglomerative.png", "1 Bedroom Flats")
+cluster_kmeans(X, 4, "plot-all-kmeans-4.png", "All House Types")
+cluster_agglomerative(X, 4, "plot-all-agglomerative-4.png", "All House types")
 
 p = two_bh["Median House Price"].to_list()
 c = two_bh["Rate per 100,000 population"].to_list()
