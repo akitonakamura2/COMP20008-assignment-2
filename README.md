@@ -2,7 +2,7 @@
 
 Group: 112
 Members: Akito Nakamura, Kaihua Zhu, Tharathep Chaiwanichkul, Milan So
-Student IDs: 1130849, 1187115,
+Student IDs: 1130849, 1187115, 1068639
 
 imported libraries: sklearn, pandas, matplotlib, numpy, scipy
 
