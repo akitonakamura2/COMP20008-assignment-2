@@ -34,6 +34,14 @@ f.write("Top 10 (Unsafe) Areas Ranked on Crime Rate and Rent price\n")
 for i in range(10):
     f.write(str(list(livabilities.items())[i]))
     f.write("\n")
+
+livabilities = dict(sorted(livabilities.items(), key=lambda item: item[1], reverse = True))
+#Write last 10 areas to text file "top10.txt"
+f.write("\nTop 10 Safest Areas\n")
+for i in range(10):
+    print(list(livabilities.items())[i])
+    f.write(str(list(livabilities.items())[i]))
+    f.write("\n")
      
 f.close() 
 
@@ -78,6 +86,19 @@ for group in livabilities_low, livabilities_mid, livabilities_high:
     top10.write("\n")
     for LGA in list(group.items())[0:10]:
         print(LGA)
+        top10.write(str(LGA))
+        top10.write("\n")
+    print("\n")
+    top10.write("\n")
+    i += 1
+    
+i = 0
+top10.write("Top 10 (Safe) Areas Ranked on Crime and Rent Price\n")
+for group in livabilities_low, livabilities_mid, livabilities_high:
+    group = dict(sorted(group.items(), key=lambda item: item[1], reverse = True))
+    top10.write(group_titles[i])
+    top10.write("\n")
+    for LGA in list(group.items())[0:10]:
         top10.write(str(LGA))
         top10.write("\n")
     print("\n")

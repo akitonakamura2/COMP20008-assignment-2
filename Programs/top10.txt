@@ -9,3 +9,15 @@ Top 10 (Unsafe) Areas Ranked on Crime Rate and Rent price
 ('Moreland', 5.395784708473804e-07)
 ('Melton', 5.679321162577872e-07)
 ('Frankston', 5.78668858333759e-07)
+
+Top 10 Safest Areas
+('Towong', 3.6744307388177885e-06)
+('Buloke', 3.1511029490542277e-06)
+('Hindmarsh', 3.0503556398908057e-06)
+('Indigo', 2.789856683795256e-06)
+('Alpine', 2.5522441203969614e-06)
+('Corangamite', 2.009488029809986e-06)
+('Gannawarra', 1.9027608552872096e-06)
+('Moira', 1.8144491538760267e-06)
+('Yarriambiack', 1.806200810784861e-06)
+('South Gippsland', 1.7694601934630554e-06)

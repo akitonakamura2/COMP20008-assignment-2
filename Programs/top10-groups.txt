@@ -35,3 +35,40 @@ High Rent Price
 ('Monash', 8.567129148148774e-07)
 ('Boroondara', 9.476977372416822e-07)
 
+Top 10 (safe) Areas Ranked on Crime and Rent Price
+Low Rent Price
+('Towong', 3.6744307388177885e-06)
+('Buloke', 3.1511029490542277e-06)
+('Hindmarsh', 3.0503556398908057e-06)
+('Indigo', 2.789856683795256e-06)
+('Alpine', 2.5522441203969614e-06)
+('Corangamite', 2.009488029809986e-06)
+('Gannawarra', 1.9027608552872096e-06)
+('Moira', 1.8144491538760267e-06)
+('Yarriambiack', 1.806200810784861e-06)
+('South Gippsland', 1.7694601934630554e-06)
+
+Mid Rent Price
+('Nillumbik', 1.5911001522935658e-06)
+('Macedon Ranges', 1.5316056505495743e-06)
+('Mount Alexander', 1.3041399585936583e-06)
+('Hepburn', 1.2886047421323977e-06)
+('Surf Coast', 1.210787136841835e-06)
+('Yarra Ranges', 1.1912443807742192e-06)
+('Moorabool', 1.0446580618457592e-06)
+('Whitehorse', 1.0323107093823742e-06)
+('Cardinia', 1.0261479940470042e-06)
+('Glen Eira', 1.021484790586087e-06)
+
+High Rent Price
+('Manningham', 1.0734451240057539e-06)
+('Boroondara', 9.476977372416822e-07)
+('Monash', 8.567129148148774e-07)
+('Bayside', 8.13306962970358e-07)
+('Moonee Valley', 6.228299108532059e-07)
+('Melton', 5.679321162577872e-07)
+('Moreland', 5.395784708473804e-07)
+('Stonnington', 4.022291176824319e-07)
+('Port Phillip', 3.229847536845091e-07)
+('Yarra', 2.464920711339441e-07)
+
