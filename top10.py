@@ -34,13 +34,6 @@ f.write("Top 10 (Unsafe) Areas Ranked on Crime Rate and Rent price\n")
 for i in range(10):
     f.write(str(list(livabilities.items())[i]))
     f.write("\n")
-
-#Write last 10 areas to text file "top10.txt"
-f.write("\nTop 10 Safest Areas\n")
-for i in range(1, 11):
-    print(list(livabilities.items())[-i])
-    f.write(str(list(livabilities.items())[i]))
-    f.write("\n")
      
 f.close() 
 
